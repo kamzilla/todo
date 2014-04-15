@@ -24,7 +24,6 @@ end
 platform :ruby do
   gem 'mysql2', '~> 0.3'
   gem 'pg', '~> 0.17'
-  gem 'sqlite3', '1.3.8' # 1.3.9 broken on rbx
 
   gem 'newrelic_rpm', '~> 3.6'
   gem 'unicorn', '~> 4.7'
