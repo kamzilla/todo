@@ -24,7 +24,6 @@ end
 platform :ruby do
   gem 'mysql2', '~> 0.3'
   gem 'pg', '~> 0.17'
-  gem 'sqlite3', '1.3.8' # 1.3.9 broken on rbx
 
   gem 'newrelic_rpm', '~> 3.6'
   gem 'unicorn', '~> 4.7'
@@ -35,24 +34,7 @@ platform :ruby do
   gem 'racc', '~> 1.4'
 end
 
-platforms :jruby do
-  ar_jdbc_version = '~> 1.3'
-  gem 'activerecord-jdbc-adapter', ar_jdbc_version
-  gem 'activerecord-jdbcmysql-adapter', ar_jdbc_version
-  gem 'activerecord-jdbcpostgresql-adapter', ar_jdbc_version
-  gem 'activerecord-jdbcsqlite3-adapter', ar_jdbc_version
-  gem 'jdbc-mysql', :require => false
-  gem 'jdbc-sqlite3', :require => false
-  gem 'jdbc-postgres', :require => false
 
-  gem 'jruby-openssl', '~> 0.9'
-  gem 'trinidad', '~> 1.4'
-end
-
-platform :rbx do
-  gem 'rubysl', '~> 2.0'
-  gem 'rubysl-test-unit', '~> 2.0', :require => false
-end
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
