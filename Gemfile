@@ -34,6 +34,3 @@ platform :ruby do
   gem 'racc', '~> 1.4'
 end
 
-group :development, :test do
-
-end
