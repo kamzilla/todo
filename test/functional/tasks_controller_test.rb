@@ -10,6 +10,9 @@ class TasksControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:lists)
+
+    refute_nil response.headers['Surrogate-Control']
+    assert_equal 'tasks', response.headers['Surrogate-Key']
   end
 
   test "should create task" do

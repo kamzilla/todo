@@ -1,9 +1,12 @@
 class TasksController < ApplicationController
+
   def index
     @todo   = Task.where(:done => false)
     @task   = Task.new
     @lists  = List.all
     @list   = List.new
+
+    set_surrogate_key_header @task.table_key
 
     respond_to do |format|
       format.html
@@ -18,6 +21,7 @@ class TasksController < ApplicationController
     task_params = params[:task].is_a?(String) ? JSON.parse(params[:task]) : params[:task]
     @task = @list.tasks.new(task_params)
     if @task.save
+      @task.purge_all
       status = "success"
       flash[:notice] = "Your task was created."
     else
@@ -40,6 +44,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
+        @task.purge_all
+        @list.purge
         format.html { redirect_to( list_tasks_url(@list), :notice => 'Task was successfully updated.') }
       else
         format.html { render :action => "edit" }
@@ -50,6 +56,7 @@ class TasksController < ApplicationController
   def destroy
     @list = List.find(params[:list_id])
     @task = Task.find(params[:id])
+    @task.purge_all
     @task.destroy
 
     respond_to do |format|
