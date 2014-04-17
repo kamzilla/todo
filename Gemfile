@@ -18,7 +18,7 @@ gem 'minitest', '~> 4.7'
 gem 'psych', '~> 2.0'
 gem 'racc', '~> 1.4'
 
-gem 'fastly-rails', git: 'git@github.com:fastly/fastly-rails.git'
+gem 'fastly-rails'
 
 
 group :assets do
