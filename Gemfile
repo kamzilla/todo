@@ -1,30 +1,28 @@
-if RUBY_VERSION =~ /1.9/
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
-
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.17'
+ruby '2.0.0'
 
-gem 'ey_config', '0.0.6'
-gem 'jquery-rails', '~> 3.0'
-gem 'rails_autolink', '~> 1.1'
-gem 'simple_form', '~> 2.1'
-gem 'pg', '~> 0.17'
-gem 'puma', '~> 2.6'
-gem 'json', '~> 1.8'
-gem 'minitest', '~> 4.7'
-gem 'psych', '~> 2.0'
-gem 'racc', '~> 1.4'
+gem 'rails', '~> 4.0.8'
+gem 'protected_attributes'
+
+
+gem 'jquery-rails'
+gem 'rails_autolink'
+gem 'simple_form'
+gem 'pg'
+gem 'puma'
+gem 'json'
+gem 'minitest'
+gem 'psych'
+gem 'racc'
 
 gem 'fastly-rails'
 
 
 group :assets do
-  gem 'sass-rails', '~> 3.2'
-  gem 'coffee-rails', '~> 3.2'
-  gem 'uglifier', '~> 2.3'
+  gem 'sass-rails', '~> 4.0'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 
