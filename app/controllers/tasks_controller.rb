@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_filter :set_cache_control_headers, only: [:index]
 
   def index
     @todo   = Task.where(:done => false)
@@ -21,7 +22,9 @@ class TasksController < ApplicationController
     task_params = params[:task].is_a?(String) ? JSON.parse(params[:task]) : params[:task]
     @task = @list.tasks.new(task_params)
     if @task.save
+
       @task.purge_all
+
       status = "success"
       flash[:notice] = "Your task was created."
     else
@@ -42,6 +45,8 @@ class TasksController < ApplicationController
     @list = List.find(params[:list_id])
     @task = @list.tasks.find(params[:id])
 
+    @task.purge_all
+
     respond_to do |format|
       if @task.update_attributes(params[:task])
         @task.purge_all
@@ -56,8 +61,9 @@ class TasksController < ApplicationController
   def destroy
     @list = List.find(params[:list_id])
     @task = Task.find(params[:id])
-    @task.purge_all
     @task.destroy
+
+    @task.purge_all
 
     respond_to do |format|
       format.html { redirect_to(list_tasks_url(@list)) }
