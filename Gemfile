@@ -17,6 +17,7 @@ gem 'psych'
 gem 'racc'
 
 gem 'fastly-rails'
+gem 'rails_12factor'
 
 
 group :assets do
